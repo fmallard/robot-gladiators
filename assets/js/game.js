@@ -5,6 +5,8 @@ var playerHealth = 100;
 
 var playerAttack = 10;
 
+var playerMoney = 10;
+
 
 var enemyName = "Roborto"
 
@@ -22,10 +24,47 @@ var fight = function() {
   
     enemyHealth = enemyHealth - playerAttack;
 
+    // Skip or fight battle
+
+    var promptFight = window.prompt( "Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+
+    // if fight is chosen
+
+    if (promptFight === "fight" || promptFight === "FIGHT") {
+  
     // Log a resulting message to the console so we know that it worked.
   
-    console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+      console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
 
+    }
+
+
+    else if (promptFight === "skip" || promptFight === "SKIP") {
+      window.alert(playerName + " has chosen to skip the fight! ");
+    
+      //confirm if player wants to skip
+      var confirmSkip = window.confirm(" Are you sure you'd like to to quit? ");
+
+      //if yes, then leave the fight
+      if (confirmskip) {
+
+        window.alert(playerName + " has decided to skip this fight. Goodbye. ");
+
+      //subtract money from playerMoney for skipping
+
+      playerMoney = playerMoney -2;
+      }
+
+      //if no, ask question again by running fight() again
+
+      else {
+        fight();
+      }
+    }
+
+    else {
+      window.alert("You need to choose a valid option. Try again!");
+    }
     // check enemy's health
 
     if (enemyHealth <= 0) {
@@ -50,7 +89,7 @@ var fight = function() {
     else {
       window.alert(playerName + " still has " + playerHealth + " health left. ");
     }
-    // Log a resulting message to the console so we know that it worked.
+    
   };
 
 
